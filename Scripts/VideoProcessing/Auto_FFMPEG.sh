@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # Change current working directory
-cd "/home/moonmoon/AllVideosAlbertson/Group/Cropped/"
+cd "/home/moonmoon/SCCichlidVid/Group/Cropped/"
 
 # Set static variables (duration and slider allow for overlapping segments when necessary) in seconds
 duration=14400
@@ -16,11 +16,11 @@ for i in *.avi; do
     # Create folder for filename if one does not already exist
     foldername=`basename -- "$i" .avi`
 
-    mkdir -p /home/moonmoon/AllVideosAlbertson/Group/ToTrack/$foldername;
+    mkdir -p /home/moonmoon/SCCichlidVid/Group/ToTrack/$foldername;
     # Run loop to create each video cut for n in a sequence of *six*; then execute the following lines
     for n in `seq 6`; do 
         # Cut the video at the checkpoints designated by the static variables, copy audio/video codecs and set name 
-        ffmpeg -i "$i" -ss $start -t $duration -c:v copy -c:a copy /home/moonmoon/AllVideosAlbertson/Group/ToTrack/$foldername/cut"$n"-"$i"
+        ffmpeg -i "$i" -ss $start -t $duration -c:v copy -c:a copy /home/moonmoon/SCCichlidVid/Group/ToTrack/$foldername/cut"$n"-"$i"
         # Print progress using static variable
         #echo $start
         #echo $slider
@@ -30,6 +30,6 @@ for i in *.avi; do
         #echo $start
     # End inner for loop
     done
-    mv /home/moonmoon/AllVideosAlbertson/Group/Cropped/$i /home/moonmoon/AllVideosAlbertson/Group/Originals/$i
+    mv /home/moonmoon/SCCichlidVid/Group/Cropped/$i /home/moonmoon/SCCichlidVid/Group/Originals/$i
 # End outer for loop
 done
